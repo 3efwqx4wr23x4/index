@@ -959,10 +959,10 @@
                           "method": "photos.save",
                           "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":caption,"v": "5.95", "access_token": token}
                       }).then(data => {
-
+                        console.log(data);
                         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                             "method": "photos.edit",
-                            "params": {"owner_id": data[0].owner_id, "photo_id": data[0].id, "caption":caption+url_cc,"v": "5.95", "access_token": token}
+                            "params": {"owner_id": data[0].owner_id, "photo_id": data[0].id, "caption":(caption+url_cc),"v": "5.95", "access_token": token}
                         });
 
                         count_upload_photo++;
