@@ -951,7 +951,7 @@
                       //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                       //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
                       var text = [
-                        users_list+", тут про тебя написали мнениe : \n\n "
+                        users_list+", я про тебя оставляю мнение : \n\n "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -959,6 +959,12 @@
                           "method": "photos.save",
                           "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":caption,"v": "5.95", "access_token": token}
                       }).then(data => {
+
+                        vkConnect.sendPromise("VKWebAppCallAPIMethod", {
+                            "method": "photos.edit",
+                            "params": {"owner_id": data[0].owner_id, "photo_id": data[0].id, "caption":caption+url_cc,"v": "5.95", "access_token": token}
+                        });
+
                         count_upload_photo++;
 
                         if(viewer.friends.items[global_offset_i+1]){
