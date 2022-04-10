@@ -915,13 +915,15 @@
             sortByLastTime();
             var users_list = "";
             var count = 0;
-          //  for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
+            for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
                 //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
-                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+") ";
+                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+"), ";
 
-                global_offset_i++;
-            //    break;
-          //  }
+                count++;
+                if(count > 2){
+                  break;
+                }
+            }
 
               return users_list;
           }
