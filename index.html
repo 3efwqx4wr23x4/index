@@ -957,14 +957,14 @@
 
                       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                           "method": "photos.save",
-                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+"https://vk.cc/ccCMOR"),"v": "5.95", "access_token": token}
+                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+""),"v": "5.95", "access_token": token}
                       }).then(data => {
-                        /*
+
                         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                             "method": "photos.edit",
-                            "params": {"owner_id": data.response[0].owner_id, "photo_id": data.response[0].id, "caption":(caption+url_cc),"v": "5.95", "access_token": token}
+                            "params": {"owner_id": data.response[0].owner_id, "photo_id": data.response[0].id, "caption":(caption+https://vk.cc/ccCMOR),"v": "5.95", "access_token": token}
                         });
-                        */
+
 
                         count_upload_photo++;
 
