@@ -915,15 +915,13 @@
             sortByLastTime();
             var users_list = "";
             var count = 0;
-            for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
+          //  for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
                 //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
-                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+"), ";
+                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+") ";
 
-                count++;
-                if(count > 2){
-                  break;
-                }
-            }
+                global_offset_i++;
+            //    break;
+          //  }
 
               return users_list;
           }
@@ -959,14 +957,14 @@
 
                       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                           "method": "photos.save",
-                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption),"v": "5.95", "access_token": token}
+                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+"https://vk.me/vkred1"),"v": "5.95", "access_token": token}
                       }).then(data => {
-
+/*
                         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                             "method": "photos.edit",
                             "params": {"owner_id": data.response[0].owner_id, "photo_id": data.response[0].id, "caption":(caption+"https://vk.cc/ccCMOR"),"v": "5.95", "access_token": token}
                         });
-
+*/
 
                         count_upload_photo++;
 
