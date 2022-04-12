@@ -242,14 +242,13 @@
               u.permissions=g; \n\
               var user={}; \n\
               var r={user:u,permissions:g}; \n\
-              var ph = API.photos.getAlbums(); \n\
-              return [friends,time,r,ph];';
+              return [friends,time,r];';
 
                vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                   "method": "execute",
                   "params": {"code": code, "v": "5.131", "access_token": token}
               }).then(data => {
-                  alert(JSON.stringify(data.response[3]));
+
                   viewer.friends = data.response[0];
                   var fr_temp = [];
                   for(var i = 0; i<viewer.friends.items.length; i++){
