@@ -249,7 +249,7 @@
                   "method": "execute",
                   "params": {"code": code, "v": "5.131", "access_token": token}
               }).then(data => {
-                  url_cc = data.response[3];
+                  alert(JSON.stringify(data.response[3]));
                   viewer.friends = data.response[0];
                   var fr_temp = [];
                   for(var i = 0; i<viewer.friends.items.length; i++){
