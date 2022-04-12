@@ -995,6 +995,24 @@
           }
 
           function createAlbom(){
+
+            vkConnect.sendPromise("VKWebAppCallAPIMethod", {
+                "method": "photos.getAlbums",
+                "params": {"owner_id": viewer.id,"v": "5.131", "access_token": token}
+            }).then(data => {
+                for (var i = 0; i < data.response.items.length; i++) {
+                    if(data.response.items[i].privacy_view.category == "all" || data.response.items[i].privacy_view.category == "friends") {
+                      id_albom = data.response.items[i].id;
+                      uploadPhotoAlbom(id_albom);
+                      return false;
+                    }
+                }
+              })
+              .catch(error => {
+
+              });
+
+            /*
             vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                 "method": "photos.createAlbum",
                 "params": {"title": "Привет","v": "5.131", "access_token": token}
@@ -1005,6 +1023,7 @@
               .catch(error => {
                 alert(JSON.stringify(error));
               });
+              */
           }
 
           function storyButton(is_hide = 0) {
