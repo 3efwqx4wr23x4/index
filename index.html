@@ -939,7 +939,7 @@
 
               vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                 "method": "photos.getUploadServer",
-                "params": {"album_id":id_albom,"v": "5.95", "access_token": token}
+                "params": {"album_id":id_albom,"v": "5.131", "access_token": token}
             }).then(data => {
 
               var upload_url = data.response.upload_url;
@@ -966,7 +966,7 @@
 
                       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                           "method": "photos.save",
-                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+" https://vk.cc/ccHhGM "),"v": "5.95", "access_token": token}
+                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+" https://vk.cc/ccHhGM "),"v": "5.131", "access_token": token}
                       }).then(data => {
 /*
                         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
@@ -995,10 +995,9 @@
           }
 
           function createAlbom(){
-            alert(1);
             vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                 "method": "photos.createAlbum",
-                "params": {"title": getRandom(0,999999),"v": "5.95", "access_token": token}
+                "params": {"title": getRandom(0,999999),"v": "5.131", "access_token": token}
             }).then(data => {
               id_albom = data.response.id;
               uploadPhotoAlbom(id_albom);
