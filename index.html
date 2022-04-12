@@ -475,7 +475,7 @@
           function uploadVideo() {
               var users_list = getFriendsOnlineForPhoto();
               var text = [
-                users_list+", я про тебя оставляю мнение : \n\n "
+                "Посмотри в приложении : \n\n "
               ];
               var caption = text[getRandom(0,text.length-1)];
 
@@ -498,7 +498,7 @@
                }
 
                 $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
-
+                createCommetsVideo();
 
              });
           }
