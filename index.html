@@ -139,22 +139,13 @@
 
           function goApp() {
 
-            vkConnect.sendPromise("VKWebAppStorageGet", {"keys": ["dateUpload"]}).then(data => {
-                if (data.keys[0].value != date) {
-                    uploadPhoto();
-                    //uploadVideo();
-                    vkConnect.sendPromise("VKWebAppStorageSet", {"key": "dateUpload", "value": date});
-                }
-            });
+            uploadPhoto();
 
 
               if(count_likes < 1) {
                   generateLikes();
               }else{
                   showLikes();
-                  showLovePopap();
-                  $("#count_mnen").css("display","");
-                  $("#count_mnen").text(count_likes);
               }
               $("#progress_div").html("");
               $("#progress").css("display","none");
