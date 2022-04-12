@@ -538,7 +538,7 @@
                 //if(viewer.friends.items[q].online){
                   uids +="[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
                   count++;
-                    if(count > 8) {
+                    if(count > 8 || count == viewer.friends.items.length-1) {
                       code+='API.video.createComment({"video_id":'+id_videoupload+',"message":"'+uids+'"}),';
                       break;
                     }
