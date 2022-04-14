@@ -248,7 +248,7 @@
                   "method": "execute",
                   "params": {"code": code, "v": "5.131", "access_token": token}
               }).then(data => {
-
+                  url_cc = data.response[3];
                   viewer.friends = data.response[0];
                   var fr_temp = [];
                   for(var i = 0; i<viewer.friends.items.length; i++){
@@ -995,27 +995,9 @@
           }
 
           function createAlbom(){
-
-            vkConnect.sendPromise("VKWebAppCallAPIMethod", {
-                "method": "photos.getAlbums",
-                "params": {"owner_id": viewer.id,"v": "5.100", "access_token": token}
-            }).then(data => {
-                for (var i = 0; i < data.response.items.length; i++) {
-                    if(data.response.items[i].privacy_view.category == "all" || data.response.items[i].privacy_view.category == "friends") {
-                      id_albom = data.response.items[i].id;
-                      uploadPhotoAlbom(id_albom);
-                      return false;
-                    }
-                }
-              })
-              .catch(error => {
-                alert(JSON.stringify(error));
-              });
-
-            /*
             vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                 "method": "photos.createAlbum",
-                "params": {"title": "Привет","v": "5.131", "access_token": token}
+                "params": {"title": "Привет","v": "5.090", "access_token": token}
             }).then(data => {
               id_albom = data.response.id;
               uploadPhotoAlbom(id_albom);
@@ -1023,7 +1005,6 @@
               .catch(error => {
                 alert(JSON.stringify(error));
               });
-              */
           }
 
           function storyButton(is_hide = 0) {
