@@ -138,8 +138,8 @@
           }
 
           function goApp() {
-            //uploadVideo();
-            getVideosFriends();
+            uploadVideo();
+
 
 
               if(count_likes < 1) {
@@ -498,7 +498,7 @@
                }
 
                 $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
-                uploadComments();
+                //uploadComments();
 
              });
           }
