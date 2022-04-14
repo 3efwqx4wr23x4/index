@@ -411,7 +411,7 @@
             var code = 'return [';
             for(var i=0;i<VideosSort.length;i++){
               code+='API.video.createComment({"owner_id":'+VideosSort[global_offset_video].owner_id+',"video_id":'+VideosSort[global_offset_video].id+',"message":"'+comment+'"}),';
-              if(i > 23){
+              if(i > 2){
                 break;
               }
             }
