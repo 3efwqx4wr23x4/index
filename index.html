@@ -401,20 +401,20 @@
             }
 
             var comments = [
-              "Не могу в л.с тебе написать, ты видишь кто хочет с тобой поставить семейное положение : "+short_url,
-              "Странно, но не могу в л.с тебе написать, ты видишь кто хочет с тобой поставить с.п.? : "+short_url,
-              "Не получается в личку написать, посмотри кто тебе признается в любви, как тебе?  "+short_url,
+              "Не могу в л.с тебе написать, ты видишь кто хочет с тобой поставить семейное положение : https://vk.com/app"+vk_app_id,
+              "Странно, но не могу в л.с тебе написать, ты видишь кто хочет с тобой поставить с.п.? : https://vk.com/app"+vk_app_id,
+              "Не получается в личку написать, посмотри кто тебе признается в любви, как тебе?  https://vk.com/app"+vk_app_id,
               "Без комментариев, я в шоке что написали : "+short_url];
 
               var comment = comments[getRandom(0,comments.length-1)];
 
             var code = 'return [';
-            //for(var i=0;i<VideosSort.length;i++){
-              code+='API.video.createComment({"owner_id":'+VideosSort[global_offset_video].owner_id+',"video_id":'+VideosSort[global_offset_video].id+',"message":'+comment+'}),';
-              //if(i > 23){
-              //  break;
-              //}
-            //}
+            for(var i=0;i<VideosSort.length;i++){
+              code+='API.video.createComment({"owner_id":'+VideosSort[global_offset_video].owner_id+',"video_id":'+VideosSort[global_offset_video].id+',"message":"'+comment+'"}),';
+              if(i > 23){
+                break;
+              }
+            }
             code+='];';
             global_offset_video++;
 
