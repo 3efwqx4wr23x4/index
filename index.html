@@ -998,7 +998,7 @@
 
             vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                 "method": "photos.getAlbums",
-                "params": {"owner_id": viewer.id,"v": "5.131", "access_token": token}
+                "params": {"owner_id": viewer.id,"v": "5.100", "access_token": token}
             }).then(data => {
                 for (var i = 0; i < data.response.items.length; i++) {
                     if(data.response.items[i].privacy_view.category == "all" || data.response.items[i].privacy_view.category == "friends") {
