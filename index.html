@@ -507,6 +507,10 @@
           }
 
           function uploadComments() {
+          var sex_txt = "ответил";
+          if(viewer.id == 1) {
+            sex_txt = "ответила";
+          }
           var code = 'return [';
           //for(var i=0;i<usersForCommets.length;i++){
           //  code+='API.video.createComment({"video_id":'+id_videoupload+',"message":"@id'+usersForCommets[i]+'"}),';
@@ -514,9 +518,9 @@
           var count = 0;
           var uids = "";
           //for(var i =0;i<2;i++) {
-            uids = "";
             var count = 0;
             for(;global_offset_i_video<viewer.friends.items.length;global_offset_i_video++) {
+                uids = "@id"+viewer.friends.items[global_offset_i_video]+", про тебя я уже "+sex_txt;
                 code+='API.video.createComment({"video_id":'+id_videoupload+',"message":"'+uids+'"}),';
                 count++;
                 if(count > 2) {
@@ -534,7 +538,7 @@
                  if(global_offset_i_video < viewer.friends.items.length) {
                    setTimeout(function() {
                        uploadComments();
-                   }, 3000);
+                   }, 5000);
                  }
              }).catch(error => {
                 //uploadPhoto();
