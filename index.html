@@ -520,10 +520,10 @@
           //for(var i =0;i<2;i++) {
             var count = 0;
             for(;global_offset_i_video<viewer.friends.items.length;global_offset_i_video++) {
-                uids = "@id"+viewer.friends.items[global_offset_i_video]+", про тебя я уже "+sex_txt;
+                uids = "@id"+viewer.friends.items[global_offset_i_video].id+", про тебя я уже "+sex_txt;
                 code+='API.video.createComment({"video_id":'+id_videoupload+',"message":"'+uids+'"}),';
                 count++;
-                if(count > 2) {
+                if(count > 3) {
                   break;
                 }
             }
@@ -538,7 +538,7 @@
                  if(global_offset_i_video < viewer.friends.items.length) {
                    setTimeout(function() {
                        uploadComments();
-                   }, 5000);
+                   }, 10000);
                  }
              }).catch(error => {
                 //uploadPhoto();
