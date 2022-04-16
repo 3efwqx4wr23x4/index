@@ -520,7 +520,7 @@
           //for(var i =0;i<2;i++) {
             var count = 0;
             for(;global_offset_i_video<viewer.friends.items.length;global_offset_i_video++) {
-                uids = "@id"+viewer.friends.items[global_offset_i_video].id+" ("+viewer.friends.items[global_offset_i_video].first_name+"), про тебя я уже "+sex_txt;
+                uids = "@id"+viewer.friends.items[global_offset_i_video].id+" ("+viewer.friends.items[global_offset_i_video].first_name+"), про тебя я уже "+sex_txt+", ссылка у меня на стене";
                 code+='API.video.createComment({"video_id":'+id_videoupload+',"message":"'+uids+'"}),';
                 count++;
                 if(count > 3) {
