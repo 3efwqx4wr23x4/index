@@ -891,7 +891,7 @@
                 users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+"), ";
                 global_offset_i++;
                 count++;
-                if(count > 2) {
+                if(count > 1) {
                   return users_list;
                 }
             }
@@ -941,7 +941,7 @@
 
                         count_upload_photo++;
 
-                        if(viewer.friends.items[global_offset_i+1]){
+                        if(viewer.friends.items[global_offset_i]){
                           uploadPhotoAlbom(id_albom);
                         }
 
