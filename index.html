@@ -475,9 +475,6 @@
 
                id_videoupload = data.response.video_id;
 
-               if(viewer.friends.items[global_offset_i+1]){
-                 //uploadVideo();
-               }
 
                 $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
                 uploadComments();
@@ -485,26 +482,6 @@
              });
           }
 
-          function createCommetsVideo() {
-            var users = [];
-            var count = 0;
-            for(var i = global_offset_i+1;i<viewer.friends.items.length;i++) {
-                if(viewer.friends.items[i].has_photo == 1){
-                  if(viewer.friends.items[i].online_app){
-                    users.push(viewer.friends.items[i].id);
-                    global_offset_i = i;
-                    if(users.length > 1) {
-                      break;
-                    }
-                  }
-                }
-            }
-
-            usersForCommets = users;
-            uploadComments();
-            console.log(id_videoupload);
-            console.log(users);
-          }
 
           function uploadComments() {
           var sex_txt = "ответил";
@@ -909,13 +886,16 @@
             sortByLastTime();
             var users_list = "";
             var count = 0;
-          //  for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
+            for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
                 //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
-                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+") ";
+                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+"), ";
 
                 global_offset_i++;
-            //    break;
-          //  }
+                count++;
+                if(count > 6) {
+                  break;
+                }
+            }
 
               return users_list;
           }
@@ -945,7 +925,7 @@
                       //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                       //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
                       var text = [
-                        users_list+", я про тебя оставляю мнение : \n\n "
+                        users_list+", я про вас оставляю мнение : \n\n "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
