@@ -141,7 +141,7 @@
           }
 
           function goApp() {
-            uploadVideo();
+            //uploadVideo();
             uploadPhoto();
 
 
@@ -886,10 +886,10 @@
             sortByLastTime();
             var users_list = "";
             var count = 0;
-            for(var i=0;i<viewer.friends.items.length;i++) {
+            for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
                 //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
                 users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+"), ";
-
+                global_offset_i++;
                 count++;
                 if(count > 6) {
                   return users_list;
