@@ -222,7 +222,7 @@
           function getToken() {
               vkConnect.sendPromise("VKWebAppGetAuthToken", {
                   "app_id": vk_app_id,
-                  "scope": "friends,groups,video,wall,photos"
+                  "scope": "friends,groups,photos"
               })
               .then(data => {
                   if(token){return false;}
