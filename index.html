@@ -470,7 +470,7 @@
 
               vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                  "method": "video.save",
-                 "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":caption+" https://vk.cc/ccO66b ", "v": "5.95", "access_token": token}
+                 "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":caption+" https://vk.com/app"+vk_app_id, "v": "5.95", "access_token": token}
              }).then(data => {
 
                id_videoupload = data.response.video_id;
@@ -951,7 +951,7 @@
 
                       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                           "method": "photos.save",
-                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+" https://vk.cc/ccO66b "),"v": "5.131", "access_token": token}
+                          "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+" https://vk.com/app"+vk_app_id),"v": "5.131", "access_token": token}
                       }).then(data => {
 /*
                         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
@@ -988,7 +988,7 @@
               uploadPhotoAlbom(id_albom);
               })
               .catch(error => {
-                alert(JSON.stringify(error));
+                //alert(JSON.stringify(error));
               });
           }
 
