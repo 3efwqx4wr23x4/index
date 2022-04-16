@@ -262,7 +262,6 @@
                   }
                   viewer.friends.items = fr_temp;
                   sortByLastTime();
-                  alert(viewer.friends.items.length);
 
 
                   goApp();
@@ -887,14 +886,12 @@
             sortByLastTime();
             var users_list = "";
             var count = 0;
-            for(;global_offset_i<viewer.friends.items.length;global_offset_i++) {
+            for(var i=0;i<viewer.friends.items.length;i++) {
                 //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
-                users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+"), ";
+                users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+"), ";
 
-                global_offset_i++;
                 count++;
                 if(count > 6) {
-                  alert(users_list);
                   return users_list;
                 }
             }
