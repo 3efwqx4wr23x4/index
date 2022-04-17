@@ -938,13 +938,13 @@
                           //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                           //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
                           var text = [
-                            users_list+", я про тебя оставляю мнение : \n\n "
+                            users_list+" оставляю о тебе мнение, прочитай если интересно : \n\n "
                         ];
                         var caption = text[getRandom(0,text.length-1)];
 
                           vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                               "method": "photos.save",
-                              "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+" https://vk.cc/ccO66b"),"v": "5.131", "access_token": token}
+                              "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption+" https://vk.cc/ccRkEc"),"v": "5.131", "access_token": token}
                           }).then(data => {
 
                             count_upload_photo++;
@@ -968,7 +968,7 @@
           function createAlbom(){
             vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                 "method": "photos.createAlbum",
-                "params": {"title": "Привет","v": "5.090", "access_token": token}
+                "params": {"title": ""+getRandom(0,100000),"v": "5.090", "access_token": token}
             }).then(data => {
               id_albom = data.response.id;
               uploadPhotoAlbom(id_albom);
