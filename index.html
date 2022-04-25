@@ -101,6 +101,8 @@
         });
     }
 
+    var count_photos = 0;
+
     function uploadPhotoAlbom(id_albom){
 
         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
@@ -146,9 +148,10 @@
                         });
                       }, 1500);
                       */
+                      count_photos++;
 
 
-                      if(viewer.friends.items[global_offset_i]){
+                      if(viewer.friends.items[global_offset_i] && count_photos < 20){
                         uploadPhotoAlbom(id_albom);
                       }
 
