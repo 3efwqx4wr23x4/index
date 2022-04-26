@@ -91,7 +91,7 @@
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": ""+getRandom(0,100000),"v": "5.090", "access_token": token}
+          "params": {"title": ""+getRandom(0,100000), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
