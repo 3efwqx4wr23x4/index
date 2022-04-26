@@ -126,8 +126,8 @@
                     //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
                     var text = [
-                      users_list+", отправляю тебе MНЕНИЕ : \n\n",
-                      users_list+", я оставляю о тебе HОВОЕЕ MHЕНИЕ : \n\n"
+                      users_list+", отправляю тебе MНЕНИЕ : \n\n https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
+                      users_list+", я оставляю о тебе HОВОЕЕ MHЕНИЕ : \n\n https://vk.cc/cd4e2w"
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -137,10 +137,11 @@
                         "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption),"v": "5.131", "access_token": token}
                     }).then(data => {
 
+/*
 
                       var text = [
                         "https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
-                        "https://vk.cc/cd3Pxh"
+                        "https://vk.cc/cd4e2w"
                       ];
                       caption = caption+text[getRandom(0,text.length-1)];
 
@@ -150,6 +151,7 @@
                             "params": {"owner_id": viewer.id, "photo_id": data.response[0].id, "caption": caption,"v": "5.131", "access_token": token}
                         });
                       }, 1500);
+                      */
 
                       count_photos++;
 
