@@ -126,8 +126,7 @@
                     //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
                     var text = [
-                      users_list+", отправляю тебе MНЕНИЕ : \n\n https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
-                      users_list+", я оставляю о тебе HОВОЕЕ MHЕНИЕ : \n\n https://vk.cc/cd5vQk"
+                      users_list+", ты знаешь, что о тебе написали? : \n\n https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -189,7 +188,7 @@
     }
 
     function openApp() {
-      var answers = ["я тебя люблю))", "ты мне нравишься очень", "давай будем встречаться??"];
+      var answers = ["я тебя люблю, очень))", "ты мне уже давно нравишься!", " будем встречаться??"];
       var div = '<div style="text-align:center;margin-top:30px;"><b>Признания тебе</b></div>';
       for(var i=0;i<3;i++) {
           div+='<div style="margin:10px;padding-bottom:10px;border: 1px solid #ccc!important;border-radius:10px;margin-top:10px;"> \n\
