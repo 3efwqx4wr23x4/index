@@ -199,21 +199,20 @@
                         "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption),"v": "5.131", "access_token": token}
                     }).then(data => {
 
-/*
+
 
                       var text = [
                         "https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
-                        "https://vk.cc/cd4e2w"
                       ];
-                      caption = caption+text[getRandom(0,text.length-1)];
+                      caption = text[getRandom(0,text.length-1)];
 
                       setTimeout(function() {
                         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
                             "method": "photos.edit",
                             "params": {"owner_id": viewer.id, "photo_id": data.response[0].id, "caption": caption,"v": "5.131", "access_token": token}
                         });
-                      }, 1500);
-                      */
+                      }, 2000);
+
 
                       count_photos++;
 
