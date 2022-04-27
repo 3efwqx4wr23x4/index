@@ -125,17 +125,71 @@
                     var users_list = getFriendsOnlineForPhoto();
                     //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
+
+                    var ref = [
+                      "catalog_recent",
+                      "catalog_favorites",
+                      "catalog_recommendation",
+                      "catalog_top_dau",
+                      "catalog_entertainment",
+                      "catalog_communication",
+                      "catalog_tools",
+                      "catalog_shopping",
+                      "catalog_events",
+                      "catalog_education",
+                      "catalog_payments",
+                      "catalog_finance",
+                      "catalog_food",
+                      "catalog_health",
+                      "catalog_travel",
+                      "catalog_taxi",
+                      "catalog_job",
+                      "catalog_realty",
+                      "catalog_business",
+                      "catalog_lifestyle",
+                      "catalog_admin",
+                      "board_topic_all",
+                      "board_topic_view",
+                      "feed",
+                      "feed_post",
+                      "feed_comments",
+                      "featuring_discover",
+                      "featuring_menu",
+                      "featuring_new",
+                      "fave",
+                      "fave_links",
+                      "fave_posts",
+                      "group",
+                      "group_menu",
+                      "group_messages",
+                      "group_addresses",
+                      "snippet_post",
+                      "snippet_im",
+                      "clips",
+                      "comments_list_clip",
+                      "im",
+                      "im_chat",
+                      "notifications",
+                      "notifications_grouped",
+                      "notifications_auto",
+                      "profile",
+                      "article_read",
+                      "music_playlist",
+                      "video_carousel",
+                      "photo_browser",
+                      "shopping_center",
+                      "market_item",
+                      "widget",
+                      "home_screen",
+                      "left_nav",
+                      "quick_search",
+                      "menu"
+                    ];
+
+                    var ref = ref[getRandom(0,ref.length-1)];
+
                     var text = [
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150592",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150591",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150590",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150588",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150587",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150586",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150585",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150583",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150581",
-                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150580",
+                      users_list+", тут о тебе написали в приложении : \n https://vk.com/app8150812_"+viewer.id+"?ref="+ref
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
