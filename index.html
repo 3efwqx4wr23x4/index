@@ -180,9 +180,9 @@
       var count = 0;
       for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
+          global_offset_i++;
           if(viewer.friends.items[i].sex == 1){
             users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
-            global_offset_i++;
             count++;
             if(count > 0) {
               return [users_list,viewer.friends.items[i].photo_max];
