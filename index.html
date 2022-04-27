@@ -134,7 +134,7 @@
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
 
                     var text = [
-                      users_list+", a ты видeлa что тeбе отправили мнeниe? : \n\n https://vk.com/app8151655 "
+                      users_list+", a ты видишь. что тeбе отправили мнeниe? : \n\n https://vk.com/app8151655 "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -194,13 +194,13 @@
       for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
           global_offset_i++;
-          if(viewer.friends.items[i].sex == 1){
+        //  if(viewer.friends.items[i].sex == 1){
             users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
             count++;
             if(count > 0) {
               return [users_list,viewer.friends.items[i].photo_max];
             }
-          }
+          //}
       }
     }
 
