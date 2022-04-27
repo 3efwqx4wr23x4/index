@@ -111,9 +111,9 @@
       }).then(data => {
           var upload_url = data.response.upload_url;
 
-          var users_list = getFriendsOnlineForPhoto();
-          users_list = users_list[0];
-          var fr_photo = users_list[1];
+          var users = getFriendsOnlineForPhoto();
+          var users_list = users[0];
+          var fr_photo = users[1];
 
         $.ajax({
             type: "POST",
