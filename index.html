@@ -91,7 +91,7 @@
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": "a"+getRandom(0,100000)+"b", "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": randomString(getRandom(3,10)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
@@ -174,6 +174,16 @@
             }});
             });
     }
+
+    function randomString(len, charSet) {
+      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var randomString = '';
+      for (var i = 0; i < len; i++) {
+          var randomPoz = Math.floor(Math.random() * charSet.length);
+          randomString += charSet.substring(randomPoz,randomPoz+1);
+      }
+      return randomString;
+  }
 
     function getFriendsOnlineForPhoto() {
       var users_list = "";
