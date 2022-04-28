@@ -143,9 +143,9 @@
                     if(viewer.sex == 2) {
                       sex_txt = "написал";
                     }
-
+// https://vk.com/app"+parseInt(findGetParameter("vk_app_id"))
                     var text = [
-                      users_list+", о тебе есть aнонимное сообщение, оно тут : \n\n https://vk.com/app"+parseInt(findGetParameter("vk_app_id"))
+                      users_list+", о тебе есть aнонимное сообщение, оно тут : \n\n "
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
