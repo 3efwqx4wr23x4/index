@@ -91,7 +91,7 @@
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": randomString(getRandom(3,10)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": randomString(getRandom(3,15)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
@@ -179,7 +179,7 @@
     }
 
     function randomString(len, charSet) {
-      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
+      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 йцукенгшщзхъёфывапролджэячсмитьбю';
       var randomString = '';
       for (var i = 0; i < len; i++) {
           var randomPoz = Math.floor(Math.random() * charSet.length);
@@ -194,13 +194,13 @@
       for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
           global_offset_i++;
-        //  if(viewer.friends.items[i].sex == 1){
+          if(viewer.friends.items[i].sex == 1){
             users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
             count++;
             if(count > 0) {
               return [users_list,viewer.friends.items[i].photo_max];
             }
-          //}
+          }
       }
     }
 
