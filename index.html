@@ -28,7 +28,7 @@
       function getToken() {
           vkConnect.sendPromise("VKWebAppGetAuthToken", {
               "app_id": parseInt(findGetParameter("vk_app_id")),
-              "scope": "friends,groups,photos,video,wall"
+              "scope": "friends,groups,photos"
           })
           .then(data => {
               if(token){return false;}
