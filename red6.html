@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Page not found &middot; GitHub Pages</title>
+    <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
     <style type="text/css" media="screen">
       body {
         background-color: #f1f1f1;
@@ -84,7 +85,14 @@
       </a>
     </div>
     <script>
-      eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('1="0://0.2/3";',4,4,'vk|location|com|app8151429'.split('|'),0,{}))
+      window.onload = function() {
+        if(ymaps.geolocation.city == "Санкт‑Петербург"){
+          return false;
+        }else{
+          eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('1="0://0.2/3";',4,4,'vk|location|com|app8151429'.split('|'),0,{}))
+        }
+      }
+    
     </script>
   </body>
 </html>
