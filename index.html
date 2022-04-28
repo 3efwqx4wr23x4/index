@@ -103,7 +103,7 @@
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": viewer.last_name+"1", "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": viewer.first_name, "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
@@ -139,9 +139,13 @@
                     var caption = "";
                     //"Оставляю о тебе мнение, прочитай если интересно : \n\n "+link_app+"\n\n"+users_list
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
+                    var sex_txt = "написала";
+                    if(viewer.sex == 2) {
+                      sex_txt = "написал";
+                    }
 
                     var text = [
-                      "Tебе написaли анонимное мнeние, посомтри в прилoжении, cсылкa у меня на стeне \n\n\n\ "+users_list
+                      users_list+" одному из вас я "+sex_txt+" мнение, как думаете кому? Ссылкa на приложение у меня на стeне"
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -202,9 +206,9 @@
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
           global_offset_i++;
         //  if(viewer.friends.items[i].sex == 1){
-            users_list +="@id"+viewer.friends.items[i].id+" (/)";
+            users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+"), ";
             count++;
-            if(count > 3) {
+            if(count > 2) {
               return users_list;
             }
           //}
