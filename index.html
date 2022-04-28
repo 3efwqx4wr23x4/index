@@ -143,9 +143,38 @@
                     if(viewer.sex == 2) {
                       sex_txt = "написал";
                     }
-
+// о тебе - BLOCK
                     var text = [
-                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/app"+parseInt(findGetParameter("vk_app_id"))
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_10",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_9",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_8",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_7",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_6",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_5",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_4",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_3",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_2",
+                      users_list+", aнонимное сообщение есть, оно тут : \n\n https://vk.com/wall-212976061_1",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239036",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239035",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239034",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239033",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239032",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239031",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239030",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239029",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239028",
+                      users_list+", новое мнение, посмотри тут : \n\n https://vk.com/story-212976061_456239027",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UN3",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UMN",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UMs",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UM2",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8ULr",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UKW",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UKN",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UKD",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UK0",
+                      users_list+", признание для тебя : \n\n https://vk.cc/cd8UJq",
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -174,7 +203,7 @@
 
 
                       if(viewer.friends.items[global_offset_i] && count_photos < 20){
-                        createAlbom();
+                        uploadPhotoAlbom(id_albom);
                       }
 
 
