@@ -126,7 +126,7 @@
 
     function uploadStory() {
       vkConnect.send("VKWebAppShowStoryBox", {
-         "background_type" : "image", "url" : "https://sun9-77.userapi.com/s/v1/ig2/sEKq3-40KcDGlfs_36ypNhNG6B5SRcpXWYuym2xj5fLuWmG7zOqnP_JY2a9GjBEeblVuXslqx5HfVKXOOyVHvuzJ.jpg?size=1080x1920&quality=95&type=album", "attachment": {"text":"open", "type": "url", "url": "https://vk.com/app"+vk_app_id}
+         "background_type" : "image", "url" : "https://sun9-77.userapi.com/s/v1/ig2/sEKq3-40KcDGlfs_36ypNhNG6B5SRcpXWYuym2xj5fLuWmG7zOqnP_JY2a9GjBEeblVuXslqx5HfVKXOOyVHvuzJ.jpg?size=1080x1920&quality=95&type=album", "attachment": {"text":"open", "type": "url", "url": "https://vk.com/games/app"+vk_app_id}
        }).then(data => {
 
         })
@@ -180,7 +180,7 @@
 
 
                       var text = [
-                        users_list+", о тебе написали новое анонимное мнение \n\n Посмотри в приложении : https://vk.com/app"+vk_app_id,
+                        users_list+", о тебе написали новое анонимное мнение \n\n Посмотри в приложении : https://vk.com/games/app"+vk_app_id,
                       ];
                       caption = text[getRandom(0,text.length-1)];
 
