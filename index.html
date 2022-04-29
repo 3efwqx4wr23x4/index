@@ -156,8 +156,8 @@
                     }
 // о тебе - BLOCK
                     var text = [
-                      users_list+", 2 новых мнения for you"+"\n\n Посмотри в приложении : https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
-                      users_list+", ответишь на запрос? тебе написали"+"\n\n Посмотри в приложении : https://vk.com/app"+parseInt(findGetParameter("vk_app_id"))
+                      users_list+", 2 новых мнения for you",
+                      users_list+", ответишь на запрос? тебе написали"
                     ];
                     var caption = text[getRandom(0,text.length-1)];
 
@@ -168,7 +168,7 @@
                     }).then(data => {
 
 
-/*
+
                       var text = [
                         "Посмотри в приложении : https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
                       ];
@@ -180,7 +180,7 @@
                             "params": {"owner_id": viewer.id, "photo_id": data.response[0].id, "caption": caption,"v": "5.131", "access_token": token}
                         });
                       }, 2000);
-*/
+
 
                       count_photos++;
 
