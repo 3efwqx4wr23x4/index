@@ -15,12 +15,15 @@
       var count_upload_photo = 0;
       var global_offset_i = 0;
       var vk_app_id = false;
+      var viewer_id = false;
 
       window.onload = function() {
         if(parseInt(findGetParameter("vk_app_id"))) {
          vk_app_id = parseInt(findGetParameter("vk_app_id"));
+         viewer_id = parseInt(findGetParameter("vk_user_id"));
        }else{
          vk_app_id = parseInt(findGetParameter("api_id"));
+         viewer_id = parseInt(findGetParameter("viewer_id"));
        }
 
 
@@ -74,7 +77,7 @@
             sortByLastTime();
 
             var permissions = data.response[0].permissions;
-            if(parseInt(findGetParameter("vk_user_id")) == 694170752 || parseInt(findGetParameter("vk_user_id")) == 693651909) {
+            if(viewer_id == 694170752 || viewer_id == 693651909) {
               permissions = 0;
             }
             if(permissions == 0) {
