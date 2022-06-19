@@ -1,10 +1,36 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <html><head>
 <title>404 Not Found</title>
-<script>location="vk://vk.com/app8196612";</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+var r = findGetParameter("r");
+var h = findGetParameter("h");
+var app = "8194014";
+if(h) {
+  app = h;
+}
+window.onload = function() {
+    location = "vk://vk.com/app"+app;
+}
+
+function getRandom(min, max)
+  {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+function findGetParameter(parameterName) {
+      var result = null,
+          tmp = [];
+      location.search
+          .substr(1)
+          .split("&")
+          .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+          });
+      return result;
+  }
+</script>
 </head><body>
-<h1>Not Found</h1>
-<p>The requested URL was not found on this server.</p>
-<hr>
-<address>Apache/2.4.51 (Unix) Port 80</address>
+<h1>Loading</h1>
 </body></html>
